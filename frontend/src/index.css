@@ -1,0 +1,31 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0f0f13;
+  color: #e2e2ef;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+```
+
+---
+
+### `frontend/.env`
+Create this file at `frontend/.env`:
+```
+VITE_API_URL=http://localhost:5000/api
+```
+
+---
+
+### Root `.gitignore`
+Create this file at `shopsphere/.gitignore` (the root):
+```
+node_modules/
+.env
+dist/
+.DS_Store
