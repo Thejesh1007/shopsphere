@@ -9,6 +9,7 @@ const cartRoutes = require('./routes/cartRoutes')
 const wishlistRoutes = require('./routes/wishlistRoutes')
 const orderRoutes = require('./routes/orderRoutes')
 const paymentRoutes = require('./routes/paymentRoutes')
+const adminRoutes = require('./routes/adminRoutes')
 
 const app = express()
 
@@ -29,6 +30,7 @@ app.use('/api/cart', cartRoutes)
 app.use('/api/wishlist', wishlistRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/payments', paymentRoutes)
+app.use('/api/admin', adminRoutes)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
