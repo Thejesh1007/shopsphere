@@ -7,6 +7,8 @@ const categoryRoutes = require('./routes/categoryRoutes')
 const productRoutes = require('./routes/productRoutes')
 const cartRoutes = require('./routes/cartRoutes')
 const wishlistRoutes = require('./routes/wishlistRoutes')
+const orderRoutes = require('./routes/orderRoutes')
+const paymentRoutes = require('./routes/paymentRoutes')
 
 const app = express()
 
@@ -25,6 +27,8 @@ app.use('/api/categories', categoryRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/cart', cartRoutes)
 app.use('/api/wishlist', wishlistRoutes)
+app.use('/api/orders', orderRoutes)
+app.use('/api/payments', paymentRoutes)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
