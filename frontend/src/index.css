@@ -1,31 +1,81 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary: #0f0f13;
+  --bg-secondary: #16161d;
+  --bg-card: #1c1c26;
+  --bg-hover: #22222f;
+  --border: #2a2a3a;
+  --indigo: #6366f1;
+  --indigo-hover: #4f52d4;
+  --indigo-light: #818cf8;
+  --text-primary: #f0f0f8;
+  --text-secondary: #a0a0b8;
+  --text-muted: #606078;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
 }
 
-body {
-  background-color: #0f0f13;
-  color: #e2e2ef;
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
+body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: 'Inter', sans-serif; }
+input, select, textarea { font-family: 'Inter', sans-serif; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  padding: 0.55rem 1.2rem; border-radius: 8px; border: none; font-size: 0.9rem;
+  font-weight: 500; transition: all 0.2s; cursor: pointer;
 }
-```
+.btn-primary { background: var(--indigo); color: #fff; }
+.btn-primary:hover { background: var(--indigo-hover); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-secondary { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--bg-hover); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 0.35rem 0.8rem; font-size: 0.8rem; }
 
----
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
 
-### `frontend/.env`
-Create this file at `frontend/.env`:
-```
-VITE_API_URL=http://localhost:5000/api
-```
+.input {
+  width: 100%; padding: 0.65rem 0.9rem; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+}
+.input:focus { border-color: var(--indigo); }
+.input::placeholder { color: var(--text-muted); }
 
----
+.label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
 
-### Root `.gitignore`
-Create this file at `shopsphere/.gitignore` (the root):
-```
-node_modules/
-.env
-dist/
-.DS_Store
+.form-group { margin-bottom: 1.1rem; }
+
+.badge {
+  display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 500;
+}
+.badge-success { background: #14532d; color: #86efac; }
+.badge-warning { background: #451a03; color: #fcd34d; }
+.badge-danger { background: #450a0a; color: #fca5a5; }
+.badge-info { background: #1e1b4b; color: #a5b4fc; }
+.badge-secondary { background: var(--bg-hover); color: var(--text-secondary); }
+
+.page { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+.page-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+
+.empty-state { text-align: center; padding: 4rem 2rem; color: var(--text-muted); }
+.empty-state h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-secondary); }
+
+.error-msg { color: var(--danger); font-size: 0.85rem; margin-top: 0.3rem; }
+.success-msg { color: var(--success); font-size: 0.85rem; margin-top: 0.3rem; }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.05em; }
+td { padding: 0.85rem 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--bg-hover); }

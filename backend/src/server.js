@@ -10,6 +10,7 @@ const wishlistRoutes = require('./routes/wishlistRoutes')
 const orderRoutes = require('./routes/orderRoutes')
 const paymentRoutes = require('./routes/paymentRoutes')
 const adminRoutes = require('./routes/adminRoutes')
+const reviewRoutes = require('./routes/reviewRoutes')
 
 const app = express()
 
@@ -31,6 +32,7 @@ app.use('/api/wishlist', wishlistRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/payments', paymentRoutes)
 app.use('/api/admin', adminRoutes)
+app.use('/api/reviews', reviewRoutes)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {

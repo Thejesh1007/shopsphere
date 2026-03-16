@@ -1,34 +1,51 @@
-import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
+import { CartProvider } from './context/CartContext'
+import { ToastProvider } from './context/ToastContext'
+import Navbar from './components/Navbar'
+import ProtectedRoute from './components/ProtectedRoute'
+import AdminRoute from './components/AdminRoute'
 
-function App() {
-  const [status, setStatus] = useState('Checking...')
+import Home from './pages/Home'
+import Products from './pages/Products'
+import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
+import Orders from './pages/Orders'
+import Profile from './pages/Profile'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
-  useEffect(() => {
-    fetch('http://localhost:5000/api/health')
-      .then(res => res.json())
-      .then(data => setStatus(data.message))
-      .catch(() => setStatus('Backend not reachable'))
-  }, [])
+import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminProducts from './pages/admin/AdminProducts'
+import AdminOrders from './pages/admin/AdminOrders'
+import AdminUsers from './pages/admin/AdminUsers'
 
+export default function App() {
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: '#0f0f13',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'Inter, sans-serif',
-      color: '#fff'
-    }}>
-      <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
-        🛍️ ShopSphere
-      </h1>
-      <p style={{ color: '#a0a0b0', fontSize: '1rem' }}>
-        API Status: <span style={{ color: '#6366f1' }}>{status}</span>
-      </p>
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <ToastProvider>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+              <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+              <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
+              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+              <Route path="/admin/products" element={<AdminRoute><AdminProducts /></AdminRoute>} />
+              <Route path="/admin/orders" element={<AdminRoute><AdminOrders /></AdminRoute>} />
+              <Route path="/admin/users" element={<AdminRoute><AdminUsers /></AdminRoute>} />
+            </Routes>
+          </ToastProvider>
+        </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
-
-export default App
